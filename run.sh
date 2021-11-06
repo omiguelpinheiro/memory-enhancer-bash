@@ -42,7 +42,7 @@ get_random_poem(){
     readarray -t all_lines < "${poem_path}"
     line_index=$(($RANDOM % (${#all_lines[@]} - $line_amount)))
     get_poem_name "$poem_path"
-    for counter in $( eval echo {0..$line_amount} )
+    for counter in $( eval echo {0..$(($line_amount-1))} )
     do  
         random_line_index=$(($line_index+$counter))
         today_poem="$today_poem${all_lines[$random_line_index]}"$'\n'
