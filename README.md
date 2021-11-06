@@ -5,9 +5,13 @@ Helps exercise your memory by giving you random passwords and poems to memorize.
 Every day you, when you first open your terminal, you will receive a password and a part of a poem. You need to remember them till the end of the day. You can play with this and use the history located at `$HOME/.memory-enhancer/history` to try to remember passwords and poems from past days and see if you're getting it right.
 
 ## Install
-To install just use the following command which will use the repository `install.sh` script
+To install use the following command which will use the repository `install.sh` script
 ```bash
 curl https://raw.githubusercontent.com/omiguelpinheiro/memory-enhancer/main/install.sh | bash
+```
+Then configure the zshrc using
+```bash
+echo "bash $HOME/.memory-enhancer/run.sh -t 4 -l 2 -e" >> "$HOME/.zshrc"
 ```
 And enjoy exercising your memory.
 ## Uninstall
