@@ -1,7 +1,3 @@
-default_folder="$HOME/.memory-enhancer"
-history_path="$default_folder/history"
-current_date=$(date '+%Y-%m-%d')
-
 usage() { echo "Usage: $0 [-t <TOKEN_SIZE>] [-l <LINE_AMOUNT>]" 1>&2; exit 1; }
 
 while getopts t:l:e flag; do
@@ -27,12 +23,12 @@ generate_poem(){
     else
         folder_index=0
     fi
-    if [[ -d "${default_folder}/poemas" && -d "${default_folder}/poems" ]]
+    if [[ -d "${memory_enhancer_default_folder}/poemas" && -d "${memory_enhancer_default_folder}/poems" ]]
     then
         poems_folders=("poemas" "poems")
         selected_folder=${poems_folders[$(($folder_index))]}
         
-        poems=("$default_folder/$selected_folder"/*)
+        poems=("$memory_enhancer_default_folder/$selected_folder"/*)
         poem_index=$(($RANDOM % ${#poems[@]}))
         poem_file="${poems[$poem_index]}"
         get_random_poem "$poem_file"
@@ -79,7 +75,9 @@ generate_token(){
 }
 
 run_memory_enhancer(){
-    history_path="$default_folder/history"
+    memory_enhancer_default_folder="$HOME/.memory-enhancer"
+    history_path="$memory_enhancer_default_folder/history"
+    current_date=$(date '+%Y-%m-%d')
     if [[ -z "$history_path" || -s "$history_path" ]]
     then
         readarray -t history_lines < "${history_path}"
