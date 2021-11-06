@@ -5,7 +5,6 @@ setup_repo(){
     then
         repo="https://github.com/omiguelpinheiro/memory-enhancer.git"
         git clone $repo $default_folder
-        echo "Script folder don't exist, cloning repository"
     else
         echo "Script folder exists, doing nothing"
     fi
@@ -14,7 +13,6 @@ setup_repo(){
 setup_script_folder(){
     if [ ! -f "${default_folder}/history" ]
     then
-        echo "History file don't exist, creating it"
         touch "${default_folder}/history"
     else
         echo "History file exists, doing nothing"
