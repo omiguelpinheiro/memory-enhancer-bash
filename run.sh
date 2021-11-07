@@ -43,7 +43,7 @@ get_random_poem(){
     line_index=$(($RANDOM % (${#all_lines[@]} - $line_amount)))
     get_poem_name "$poem_path"
     for counter in $( eval echo {0..$(($line_amount-1))} )
-    do  
+    do
         random_line_index=$(($line_index+$counter))
         today_poem="$today_poem${all_lines[$random_line_index]}"$'\n'
     done
@@ -82,17 +82,17 @@ run_memory_enhancer(){
     then
         readarray -t history_lines < "${history_path}"
         for i in $(seq $((${#history_lines[@]})) -1 0)
-        do  
+        do
             if [[ "${history_lines[$i]}" == *"Date"* ]]
             then
-                line_date=$(echo "${history_lines[$i]}" | cut -d" " -f 2)
-                if [[ "$line_date" < "$curent_date" ]]
+                line_date=$(echo "${history_lines[$i]}" | cut -d":" -f 2)
+                if [[ "$line_date" < "$current_date" ]]
                 then
                     init_token_poem
                     show_today_token_poem "$today_token" "$today_poem" "$today_poem_title" "$today_poem_author"
                     break
                 fi
-                if [[ "$line_date" == "$curent_date" ]]
+                if [[ "$line_date" == "$current_date" ]]
                 then
                     break
                 fi
@@ -114,13 +114,13 @@ show_today_token_poem(){
     poem="$2"
     title="$3"
     author="$4"
-
-    echo "Hi, todays token is: $token"
+    
+    echo "Hi, todays token is:$token"
     echo "Have fun memorizing this part of the poem!"
     echo "$title"
     echo "$poem"
     echo "$author"
-
+    
     save_poem "$token" "$poem" "$title" "$author"
 }
 
@@ -129,7 +129,7 @@ save_poem(){
     poem="$2"
     title="$3"
     author="$4"
-
+    
     echo "Date:$current_date" >> $history_path
     echo "Token:$token" >> $history_path
     echo "Poem:" >> $history_path
