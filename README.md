@@ -1,3 +1,5 @@
+# THIS PROJECT HAS BEEN DISCONTINUED
+[I moved to go](https://github.com/omiguelpinheiro/memory-enhancer).
 # memory-enhancer
 Helps exercise your memory by giving you random passwords and poems to memorize.
 
